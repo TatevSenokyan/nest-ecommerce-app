@@ -33,3 +33,11 @@ jobs:
 
       - name: Build application
         run: npm run build
+
+      - name: Show GitHub information
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
