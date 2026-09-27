@@ -1,3 +1,18 @@
+jest.mock('bullmq', () => ({
+  Queue: class Queue {},
+}));
+
+jest.mock('@nestjs/bullmq', () => {
+  const { Inject } = jest.requireActual('@nestjs/common');
+  const getQueueToken = (name?: string) =>
+    name ? `BullQueue_${name}` : 'BullQueue_default';
+
+  return {
+    getQueueToken,
+    InjectQueue: (name?: string) => Inject(getQueueToken(name)),
+  };
+});
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { DataSource } from 'typeorm';
 import { getQueueToken } from '@nestjs/bullmq';

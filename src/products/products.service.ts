@@ -17,7 +17,7 @@ import { Product } from './product.entity';
 import { StockReservation } from './entities/stock-reservation.entity';
 import { REDIS } from '../common/constants/redis.constants';
 import { InjectQueue } from '@nestjs/bullmq';
-import { Queue } from 'bullmq';
+import type { Queue } from 'bullmq';
 
 @Injectable()
 export class ProductsService {
